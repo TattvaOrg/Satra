@@ -22,6 +22,20 @@ A lightweight terminal-based process launcher and tracker.
 curl -sSL https://raw.githubusercontent.com/TattvaOrg/Satra/main/install.sh | bash
 ```
 
+## Updating
+
+Update Satra to the latest version at any time:
+
+```sh
+satra update
+```
+
+Or re-run the installer:
+
+```sh
+curl -sSL https://raw.githubusercontent.com/TattvaOrg/Satra/main/install.sh | bash
+```
+
 ## Features
 
 - Detached process launching

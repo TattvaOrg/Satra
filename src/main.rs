@@ -15,6 +15,28 @@ fn main() -> Result<(), io::Error> {
     let args: Vec<String> = std::env::args().collect();
     if args.len() > 1 {
         match args[1].as_str() {
+            "update" => {
+                println!("==> Checking for updates and updating Satra...");
+                let status = std::process::Command::new("bash")
+                    .arg("-c")
+                    .arg("curl -sSL https://raw.githubusercontent.com/TattvaOrg/Satra/main/install.sh | bash")
+                    .status();
+
+                match status {
+                    Ok(s) if s.success() => {
+                        println!("==> Update completed successfully.");
+                        return Ok(());
+                    }
+                    Ok(s) => {
+                        eprintln!("Error: Update process exited with code: {:?}", s.code());
+                        std::process::exit(s.code().unwrap_or(1));
+                    }
+                    Err(e) => {
+                        eprintln!("Error running update: {}", e);
+                        std::process::exit(1);
+                    }
+                }
+            }
             "-v" | "--version" => {
                 println!("satra {}", env!("CARGO_PKG_VERSION"));
                 return Ok(());
@@ -22,7 +44,10 @@ fn main() -> Result<(), io::Error> {
             "-h" | "--help" => {
                 println!("Satra - A lightweight terminal-based process launcher and tracker");
                 println!();
-                println!("Usage: satra [OPTIONS]");
+                println!("Usage: satra [COMMAND] [OPTIONS]");
+                println!();
+                println!("Commands:");
+                println!("  update           Update Satra to the latest version");
                 println!();
                 println!("Options:");
                 println!("  -h, --help       Print help information");
