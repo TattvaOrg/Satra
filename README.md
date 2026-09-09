@@ -1,20 +1,5 @@
 # Satra
-
-```text
-┌──────────────────────────────┐
-│  ★ Satra v0.1.0             │
-├──────────────────────────────┤
-│ [1] ● brave   PID:1234 ↑5m  │
-│ [2] ● thunar  PID:5678 ↑2m  │
-│ [3] ● code    PID:9012 ↑1m  │
-├──────────────────────────────┤
-│ Tab:⇆  ↑↓:nav  q:quit       │
-├──────────────────────────────┤
-│ > _                          │
-└──────────────────────────────┘
-```
-
-A lightweight terminal-based process launcher and tracker.
+- A lightweight terminal-based process launcher and tracker.
 
 ## Installation
 
