@@ -12,6 +12,27 @@ use ratatui::{backend::CrosstermBackend, Terminal};
 use std::{io, time::Duration};
 
 fn main() -> Result<(), io::Error> {
+    let args: Vec<String> = std::env::args().collect();
+    if args.len() > 1 {
+        match args[1].as_str() {
+            "-v" | "--version" => {
+                println!("satra {}", env!("CARGO_PKG_VERSION"));
+                return Ok(());
+            }
+            "-h" | "--help" => {
+                println!("Satra - A lightweight terminal-based process launcher and tracker");
+                println!();
+                println!("Usage: satra [OPTIONS]");
+                println!();
+                println!("Options:");
+                println!("  -h, --help       Print help information");
+                println!("  -v, --version    Print version information");
+                return Ok(());
+            }
+            _ => {}
+        }
+    }
+
     enable_raw_mode()?;
     let mut stdout = io::stdout();
     execute!(stdout, EnterAlternateScreen)?;
